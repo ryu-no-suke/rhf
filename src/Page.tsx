@@ -3,6 +3,8 @@ import CheckInput from "./components/CheckInput";
 import SelectInput from "./components/SelectInput";
 import TextInput from "./components/TextInput";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 type Props = {};
 
@@ -12,9 +14,21 @@ const defaultValue = {
   select1: "option2",
   select2: "option3",
 };
+
+// zod
+
+const formSchema = z.object({
+  text: z.string().min(1, "テキストは１文字以上入力してください"),
+  checkbox: z.literal(true).or(z.literal(false)),
+  select1: z.string(),
+  select2: z.string(),
+});
+
+type Form = z.infer<typeof formSchema>;
 function Page({}: Props) {
-  const methods = useForm({
+  const methods = useForm<Form>({
     defaultValues: defaultValue,
+    resolver: zodResolver(formSchema),
   });
   const onSubmit = (data: any) => alert(JSON.stringify(data, null, 2));
   return (
