@@ -3,10 +3,13 @@ import { chakra, Flex, useCheckbox, Text, Box } from "@chakra-ui/react";
 import { useController, useFormContext } from "react-hook-form";
 type Props = {};
 
+// チェックON/OFFの表示がRHFのvalueを使う
+
 function CheckInput(props: Props) {
   const {
     field: { ref, ...rest },
   } = useController({ name: "checkbox" });
+
   const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
     useCheckbox(props);
 
@@ -37,7 +40,8 @@ function CheckInput(props: Props) {
         h={4}
         {...getCheckboxProps()}
       >
-        {state.isChecked && <Box w={2} h={2} bg="green.500" />}
+        {/* {state.isChecked && <Box w={2} h={2} bg="green.500" />} */}
+        {rest.value && <Box w={2} h={2} bg="green.500" />}
       </Flex>
       <Text color="gray.700" {...getLabelProps()}>
         Click me

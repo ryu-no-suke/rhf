@@ -6,8 +6,16 @@ import { useForm, FormProvider } from "react-hook-form";
 
 type Props = {};
 
+const defaultValue = {
+  text: "デフォルトテキスト",
+  checkbox: true,
+  select1: "option2",
+  select2: "option3",
+};
 function Page({}: Props) {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: defaultValue,
+  });
   const onSubmit = (data: any) => alert(JSON.stringify(data, null, 2));
   return (
     <Container h="100vh" p={24}>
