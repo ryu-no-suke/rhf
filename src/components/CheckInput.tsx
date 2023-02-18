@@ -1,10 +1,15 @@
 import React from "react";
 import { chakra, Flex, useCheckbox, Text, Box } from "@chakra-ui/react";
+import { useController, useFormContext } from "react-hook-form";
 type Props = {};
 
 function CheckInput(props: Props) {
+  const {
+    field: { ref, ...rest },
+  } = useController({ name: "checkbox" });
   const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
     useCheckbox(props);
+
   return (
     <chakra.label
       display="flex"
@@ -20,8 +25,9 @@ function CheckInput(props: Props) {
       py={1}
       cursor="pointer"
       {...htmlProps}
+      {...rest}
     >
-      <input {...getInputProps()} hidden />
+      <input {...getInputProps()} hidden ref={ref} />
       <Flex
         alignItems="center"
         justifyContent="center"
