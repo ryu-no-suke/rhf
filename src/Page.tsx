@@ -24,7 +24,7 @@ const formSchema = z.object({
   select2: z.string(),
 });
 
-type Form = z.infer<typeof formSchema>;
+export type Form = z.infer<typeof formSchema>;
 function Page({}: Props) {
   const methods = useForm<Form>({
     defaultValues: defaultValue,
@@ -37,7 +37,7 @@ function Page({}: Props) {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <VStack alignItems="start" justifyContent="center">
-              <TextInput />
+              <TextInput name="text" />
               <CheckInput />
               <SelectInput />
               <Button w="full" type="submit">
