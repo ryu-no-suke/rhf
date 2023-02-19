@@ -1,4 +1,4 @@
-import { Button, Center, Container, VStack } from "@chakra-ui/react";
+import { Button, Center, Container, Select, VStack } from "@chakra-ui/react";
 import CheckInput from "./components/CheckInput";
 import SelectInput from "./components/SelectInput";
 import TextInput from "./components/TextInput";
@@ -6,6 +6,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import TextInputContainer from "./components/TextInputContainer";
+import SelectInputContainer from "./components/SelectInputContainer";
 
 type Props = {};
 
@@ -41,7 +42,9 @@ function Page({}: Props) {
               {/* <TextInput name="text" /> */}
               <TextInputContainer name="text" />
               <CheckInput />
-              <SelectInput />
+              {/* <SelectInput /> */}
+              <SelectInputContainer label="開始" name="select1" />
+              <SelectInputContainer label="終了" name="select2" />
               <Button w="full" type="submit">
                 登録
               </Button>
