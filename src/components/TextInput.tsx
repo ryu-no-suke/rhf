@@ -1,29 +1,28 @@
-import { FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
-import { useFormContext } from "react-hook-form";
+import {
+  FormControl,
+  FormLabel,
+  forwardRef,
+  Input,
+  InputProps,
+  Text,
+} from "@chakra-ui/react";
 
-type Props = {
-  name: string;
+type Props = React.ComponentProps<"input"> & {
+  errorMessage?: string;
 };
 
-type FormText = {
-  [x: string]: string;
-};
-
-function TextInput({ name }: Props) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormText>();
-
-  return (
-    <>
-      <FormControl>
-        <FormLabel>テキスト</FormLabel>
-        <Input placeholder="Basic usage" {...register(name)} />
-        {errors[name] && <Text>{errors[name]?.message}</Text>}
-      </FormControl>
-    </>
-  );
-}
+const TextInput = forwardRef<InputProps & Props, "input">(
+  ({ errorMessage, ...props }, ref) => {
+    return (
+      <>
+        <FormControl>
+          <FormLabel>テキスト</FormLabel>
+          <Input placeholder="Basic usage" {...props} ref={ref} />
+          {errorMessage && <Text>{errorMessage}</Text>}
+        </FormControl>
+      </>
+    );
+  }
+);
 
 export default TextInput;

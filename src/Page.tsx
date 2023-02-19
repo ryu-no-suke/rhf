@@ -5,6 +5,7 @@ import TextInput from "./components/TextInput";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import TextInputContainer from "./components/TextInputContainer";
 
 type Props = {};
 
@@ -37,7 +38,8 @@ function Page({}: Props) {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <VStack alignItems="start" justifyContent="center">
-              <TextInput name="text" />
+              {/* <TextInput name="text" /> */}
+              <TextInputContainer name="text" />
               <CheckInput />
               <SelectInput />
               <Button w="full" type="submit">
